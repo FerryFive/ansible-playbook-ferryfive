@@ -1,0 +1,17 @@
+---
+- hosts: int.storage-1.ff.mschnitzius.com
+  become_method: sudo
+  become: yes
+
+  pre_tasks:
+  - name: create zfs dataset
+    command: zfs create tank/docker/data/dhcpd -o mountpoint=/opt/dhcpd
+    ignore_errors: True
+
+  - name: copy dhcpd.config
+    copy:
+      src: "{{ role_path }}/files/dhcpd.conf"
+      dest: "{{ dhcpd_config_path }}"
+
+  roles:
+   - dhcpd-docker
