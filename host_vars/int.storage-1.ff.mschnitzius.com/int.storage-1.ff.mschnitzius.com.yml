@@ -1,0 +1,2 @@
+dhcpd_instance_name: dhcpd_ferryfive
+dhcpd_config_path: /opt/dhcpd/dhcpd.config
